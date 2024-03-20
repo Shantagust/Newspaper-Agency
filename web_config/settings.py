@@ -29,6 +29,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "web_config.urls"
+AUTH_USER_MODEL = "newspaper.Redactor"
 
 TEMPLATES = [
     {

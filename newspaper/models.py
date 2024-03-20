@@ -5,6 +5,10 @@ from django.db import models
 class Redactor(AbstractUser):
     years_of_experience = models.IntegerField(default=0)
 
+    class Meta:
+        verbose_name = "Redactor"
+        verbose_name_plural = "Redactors"
+
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
@@ -21,7 +25,7 @@ class Newspaper(models.Model):
     content = models.TextField()
     published_date = models.DateField(auto_now_add=True)
     topics = models.ManyToManyField(Topic)
-    publisher = models.ManyToManyField(Redactor, on_delete=models.SET_NULL, null=True)
+    publisher = models.ManyToManyField(Redactor, related_name="newspapers")
 
     def __str__(self):
         return self.title
