@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% block content %}
+    <div class="row gx-4 gx-lg-5">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input type="submit" class="btn btn-sm btn-success" value="Submit">
+            <a href="{% url 'newspaper:index' %}" class="btn btn-warning btn-sm">Cancel</a>
+        </form>
+    </div>
+{% endblock %}
