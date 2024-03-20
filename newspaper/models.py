@@ -24,7 +24,7 @@ class Newspaper(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField()
     published_date = models.DateField(auto_now_add=True)
-    topics = models.ManyToManyField(Topic)
+    topic = models.ManyToManyField(Topic)
     publisher = models.ManyToManyField(Redactor, related_name="newspapers")
 
     def __str__(self):
