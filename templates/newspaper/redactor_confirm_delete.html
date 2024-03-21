@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>You really want to delete redactor: {{ redactor.username }} ?"</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="submit" value="DELETE" class="btn btn-danger">
+        <a href="{% url 'newspaper:redactor-detail' redactor.id %}" class="btn btn-success">CANCEL</a>
+    </form>
+{% endblock %}

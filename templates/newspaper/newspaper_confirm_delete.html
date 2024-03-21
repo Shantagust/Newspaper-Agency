@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>You really want delete news: {{ newspaper.title }} ?"</h1>
+  <h1>You really want to delete news: {{ newspaper.title }} ?"</h1>
   <form action="" method="post">
     {% csrf_token %}
       <input type="submit" value="DELETE" class="btn btn-danger">

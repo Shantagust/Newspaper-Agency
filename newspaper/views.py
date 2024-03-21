@@ -4,13 +4,13 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from newspaper.forms import NewsForm, RedactorForm, RedactorCreateForm
-from newspaper.models import Newspaper, Redactor
+from newspaper.models import Newspaper
 
 
 class NewsListView(generic.ListView):
     model = Newspaper
     template_name = 'newspaper/news_list.html'
-    paginate_by = 6
+    paginate_by = 4
 
 
 class NewsDetailView(generic.DetailView):
@@ -37,8 +37,13 @@ class NewsDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("newspaper:index")
 
 
+class RedactorListView(LoginRequiredMixin, generic.ListView):
+    model = get_user_model()
+    paginate_by = 2
+
+
 class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
-    model = Redactor
+    model = get_user_model()
 
 
 class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
@@ -49,3 +54,8 @@ class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
 class RedactorUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = get_user_model()
     form_class = RedactorForm
+
+
+class RedactorDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = get_user_model()
+    success_url = reverse_lazy("newspaper:redactor-list")

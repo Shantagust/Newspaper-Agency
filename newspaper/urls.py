@@ -9,8 +9,10 @@ urlpatterns = [
     path("news/<int:pk>/delete/", views.NewsDeleteView.as_view(), name="news-delete"),
     path("news/<int:pk>/", views.NewsDetailView.as_view(), name="news-detail"),
 
+    path("redactors/", views.RedactorListView.as_view(), name="redactor-list"),
     path("redactors/create/", views.RedactorCreateView.as_view(), name="redactor-create"),
     path("redactors/<int:pk>/update/", views.RedactorUpdateView.as_view(), name="redactor-update"),
+    path("redactors/<int:pk>/delete/", views.RedactorDeleteView.as_view(), name="redactor-delete"),
     path("redactors/<int:pk>/", views.RedactorDetailView.as_view(), name="redactor-detail"),
 ]
 app_name = 'newspaper'
