@@ -1,9 +1,9 @@
-from django.contrib.auth import logout
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views import generic
 
-from newspaper.forms import NewsForm
+from newspaper.forms import NewsForm, RedactorForm, RedactorCreateForm
 from newspaper.models import Newspaper, Redactor
 
 
@@ -39,3 +39,13 @@ class NewsDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
     model = Redactor
+
+
+class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
+    model = get_user_model()
+    form_class = RedactorCreateForm
+
+
+class RedactorUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = get_user_model()
+    form_class = RedactorForm
