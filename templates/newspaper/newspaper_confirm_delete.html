@@ -4,6 +4,7 @@
   <h1>You really want delete news: {{ newspaper.title }} ?"</h1>
   <form action="" method="post">
     {% csrf_token %}
-    <input type="submit" value="Yes" class="btn btn-danger">
+      <input type="submit" value="DELETE" class="btn btn-danger">
+      <a href="{% url 'newspaper:news-detail' newspaper.id %}" class="btn btn-success">CANCEL</a>
   </form>
 {% endblock %}

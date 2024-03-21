@@ -4,11 +4,11 @@ from newspaper.models import Newspaper, Topic
 
 
 class NewsForm(forms.ModelForm):
-    topics = forms.ModelMultipleChoiceField(
+    topic = forms.ModelMultipleChoiceField(
         queryset=Topic.objects.all(),
         widget=forms.CheckboxSelectMultiple,
     )
 
     class Meta:
         model = Newspaper
-        fields = ("title", "publisher", "content")
+        fields = "__all__"

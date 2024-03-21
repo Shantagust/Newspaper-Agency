@@ -32,9 +32,9 @@ class NewsUpdateView(LoginRequiredMixin, generic.UpdateView):
     success_url = reverse_lazy("newspaper:index")
 
 
-class NewsDeleteView(LoginRequiredMixin, generic.DetailView):
+class NewsDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Newspaper
-    template_name = "newspaper/news_delete.html"
+    success_url = reverse_lazy("newspaper:index")
 
 
 class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
