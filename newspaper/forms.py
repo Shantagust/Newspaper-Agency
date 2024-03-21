@@ -1,14 +1,14 @@
 from django import forms
 
-from newspaper.models import Redactor, Newspaper
+from newspaper.models import Newspaper, Topic
 
 
 class NewsForm(forms.ModelForm):
-    redactors = forms.ModelMultipleChoiceField(
-        queryset=Redactor.objects.all(),
+    topics = forms.ModelMultipleChoiceField(
+        queryset=Topic.objects.all(),
         widget=forms.CheckboxSelectMultiple,
     )
 
     class Meta:
         model = Newspaper
-        fields = ("title", "content", "topic")
+        fields = ("title", "publisher", "content")

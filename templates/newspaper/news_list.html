@@ -26,9 +26,7 @@
                                     {{ news.published_date }}
                                 </span>
                                 <span class="post-author"> by
-                                    {% for publisher in news.publisher.all %}
-                                        <a href="{{ publisher.get_absolute_url }}">{{ publisher.username }}</a>
-                                    {% endfor %}
+                                    <a href="{{ news.publisher.get_absolute_url }}">{{ news.publisher.username }}</a>
                                 </span>
                             </div>
                             <p>{{ news.content }}</p>
