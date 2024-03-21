@@ -29,7 +29,11 @@ class Newspaper(models.Model):
     content = models.TextField()
     published_date = models.DateTimeField(auto_now_add=True)
     topic = models.ManyToManyField(Topic)
-    publisher = models.ManyToManyField(Redactor, related_name="newspapers")
+    publisher = models.ForeignKey(
+        Redactor,
+        on_delete=models.CASCADE,
+        related_name="newspapers"
+    )
 
     class Meta:
         ordering = ["-published_date"]
