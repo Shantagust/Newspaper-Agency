@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+    <h3 class="news-title">
+        <span>Last news</span>
+        {% if user.is_authenticated %}
+            <a href="{% url 'newspaper:news-create' %}" class="btn btn-success btn-sm float-right">
+                add news
+            </a>
+        {% endif %}
+    </h3>
+
     {% if newspaper_list %}
         {% for news in newspaper_list %}
             <div class="news-style-one-slide">
@@ -15,7 +25,11 @@
                                     <i class="fa fa-clock-o mr-2"></i>
                                     {{ news.published_date }}
                                 </span>
-                                <span class="post-author"> by <a href="#">Tarnak Sunder</a></span>
+                                <span class="post-author"> by
+                                    {% for publisher in news.publisher.all %}
+                                        <a href="{{ publisher.get_absolute_url }}">{{ publisher.username }}</a>
+                                    {% endfor %}
+                                </span>
                             </div>
                             <p>{{ news.content }}</p>
                         </div>

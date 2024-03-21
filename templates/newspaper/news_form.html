@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
 {% load crispy_forms_filters %}
 {% block content %}
-    <div class="row gx-4 gx-lg-5">
-        <form method="POST" action="">
+    <div class="signup">
+        <div class="text-center"><a href="index.html"><img src="images/logos/logo.png" alt="" class="img-fluid"></a>
+        </div>
+        <h3 class="mt-4">{{ object|yesno:"Update, Create" }} news</h3>
+        <form action="" method="POST">
             {% csrf_token %}
             {{ form|crispy }}
-            <input type="submit" class="btn btn-sm btn-success" value="Submit">
-            <a href="{% url 'newspaper:index' %}" class="btn btn-warning btn-sm">Cancel</a>
+            <div class="col-md-12">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
         </form>
     </div>
 {% endblock %}

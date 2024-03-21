@@ -11,4 +11,4 @@ class NewsForm(forms.ModelForm):
 
     class Meta:
         model = Newspaper
-        fields = "__all__"
+        fields = ("title", "content", "topic")

@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %} <title>{{ newspaper.title }}</title> {% endblock %}
 
 {% block content %}
     <div class="single-post">
@@ -13,6 +16,7 @@
         </div>
     </div>
 
+    <!-- comments -->
     <div id="comments" class="comments-block block">
         <h3 class="news-title">
             <span>02 Comments</span>
@@ -20,20 +24,14 @@
         <ul class="all-comments">
             <li>
                 <div class="comment">
-                    <img class="commented-person" alt="" src="images/news/author-01.jpg">
+                    <img class="commented-person" alt="" src="{% static 'images/news/author-01.jpg' %}">
                     <div class="comment-body">
                         <div class="meta-data">
                             <span class="commented-person-name">Jack Anderson</span>
                             <span class="comment-hour d-block"><i class="fa fa-clock-o mr-2"></i>February 6, 2019 at 12:20 pm</span>
                         </div>
                         <div class="comment-content">
-                            <p>
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta
-                                perferendis asperiores
-                                voluptatum saepe repellat atque obcaecati dolores nulla, explicabo harum
-                                inventore
-                                sed corrupti molestiae aspernatur.
-                            </p>
+                            <p>Comment</p>
                         </div>
                         <div class="text-left">
                             <a class="comment-reply" href="#"><i class="fa fa-reply"></i> Reply</a>
@@ -51,12 +49,7 @@
                                             class="fa fa-clock-o mr-2"></i>March 9, 2019 at 12:20 pm</span>
                                 </div>
                                 <div class="comment-content">
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui
-                                        expedita magnam ea
-                                        tempora consectetur fugit dolorum numquam at obcaecati
-                                        voluptatibus.
-                                    </p>
+                                    <p>Comment2</p>
                                 </div>
                                 <div class="text-left">
                                     <a class="comment-reply" href="#"><i class="fa fa-reply"></i> Reply</a>
@@ -73,12 +66,7 @@
                             <span class="comment-hour d-block"><i class="fa fa-clock-o mr-2"></i>June 6, 2019 at 12:20 pm</span>
                         </div>
                         <div class="comment-content">
-                            <p>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error, ipsa
-                                dolor exercitationem
-                                culpa obcaecati illo veniam voluptatem perferendis hic nisi tempora
-                                omnis, mollitia unde doloribus.
-                            </p>
+                            <p>Comment3</p>
                         </div>
                         <div class="text-left">
                             <a class="comment-reply" href="#"><i class="fa fa-reply"></i> Reply</a>
