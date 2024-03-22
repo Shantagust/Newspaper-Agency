@@ -3,7 +3,8 @@ from django.urls import path
 from newspaper import views
 
 urlpatterns = [
-    path("", views.NewsListView.as_view(), name="index"),
+    path("", views.index, name="index"),
+    path("news/", views.NewsListView.as_view(), name="news-list"),
     path("news/create/", views.NewsCreateView.as_view(), name="news-create"),
     path("news/<int:pk>/update/", views.NewsUpdateView.as_view(), name="news-update"),
     path("news/<int:pk>/delete/", views.NewsDeleteView.as_view(), name="news-delete"),

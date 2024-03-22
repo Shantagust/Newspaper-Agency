@@ -1,10 +1,20 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
 from newspaper import forms
-from newspaper.models import Newspaper, Topic
+from newspaper.models import Newspaper, Topic, Redactor
+
+
+def index(request):
+    context = {
+        "news_count": Newspaper.objects.count(),
+        "topic_count": Topic.objects.count(),
+        "redactor_count": Redactor.objects.count()
+    }
+    return render(request, "newspaper/index.html", context=context)
 
 
 class NewsListView(generic.ListView):
@@ -22,19 +32,19 @@ class NewsCreateView(LoginRequiredMixin, generic.CreateView):
     model = Newspaper
     form_class = forms.NewsForm
     template_name = "newspaper/news_form.html"
-    success_url = reverse_lazy("newspaper:index")
+    success_url = reverse_lazy("newspaper:news-list")
 
 
 class NewsUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Newspaper
     form_class = forms.NewsForm
     template_name = "newspaper/news_form.html"
-    success_url = reverse_lazy("newspaper:index")
+    success_url = reverse_lazy("newspaper:news-list")
 
 
 class NewsDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Newspaper
-    success_url = reverse_lazy("newspaper:index")
+    success_url = reverse_lazy("newspaper:news-list")
 
 
 class RedactorListView(LoginRequiredMixin, generic.ListView):
