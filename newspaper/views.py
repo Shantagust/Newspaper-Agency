@@ -29,11 +29,11 @@ class NewsListView(generic.ListView):
         return context
 
     def get_queryset(self):
-        queryset = Newspaper.objects.select_related("newspapers")
+        queryset = Newspaper.objects.select_related("publisher")
         search = SearchForm(self.request.GET)
         if search.is_valid():
             return queryset.filter(
-                model__icontains=search.cleaned_data["param"]
+                title__icontains=search.cleaned_data["param"]
             )
         return queryset
 

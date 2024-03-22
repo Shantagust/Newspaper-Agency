@@ -12,6 +12,7 @@
     </h3>
 
     {% if newspaper_list %}
+        {% include 'includes/search_field.html' %}
         {% for news in newspaper_list %}
             <div class="news-style-one-slide">
                 <div class="item">
