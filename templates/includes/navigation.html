@@ -19,54 +19,19 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'newspaper:index' %}">Home</a>
                             </li>
-                            
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                   aria-haspopup="true" aria-expanded="false">
-                                    Post
-                                </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Post Left Sidebar</a>
-                                    <a class="dropdown-item" href="#">Post Full Width</a>
-                                    <a class="dropdown-item" href="#">Single Post</a>
-                                    <a class="dropdown-item" href="#">Category 1</a>
-                                    <a class="dropdown-item" href="#">Category 2</a>
-                                    <a class="dropdown-item" href="#">Author</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                   aria-haspopup="true" aria-expanded="false">
-                                    Account
-                                </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Log In</a>
-                                    <a class="dropdown-item" href="#">Register</a>
-                                </div>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'newspaper:index' %}">News</a>
                             </li>
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                   aria-haspopup="true" aria-expanded="false">
-                                    About
-                                </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">About</a>
-                                    <a class="dropdown-item" href="#">Terms</a>
-                                    <a class="dropdown-item" href="#">Privacy Policy</a>
-                                    <a class="dropdown-item" href="#">Career</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                   aria-haspopup="true" aria-expanded="false">
-                                    Pages
-                                </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">404 Page</a>
-                                    <a class="dropdown-item" href="#">Search Page</a>
-                                </div>
-                            </li>
+                            {% if user.is_authenticated %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'newspaper:topic-list' %}">Topics</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'newspaper:redactor-list' %}">Redactors</a>
+                                </li>
+                            {% endif %}
 
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Contact</a>
@@ -81,11 +46,11 @@
                                     </a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="{% url 'newspaper:redactor-detail' user.id %}">
-                                            mypage
+                                            my profile
                                         </a>
-                                        <a class="dropdown-item" 
+                                        <a class="dropdown-item"
                                            href="{% url 'logout' %}?next={{ request.path }}">
-                                            (Logout)
+                                            Logout
                                         </a>
                                     </div>
                                 </li>

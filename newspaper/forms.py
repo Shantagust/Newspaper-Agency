@@ -29,3 +29,9 @@ class RedactorForm(forms.ModelForm):
     class Meta:
         model = get_user_model()
         fields = ["first_name", "last_name"]
+
+
+class TopicForm(forms.ModelForm):
+    class Meta:
+        model = Topic
+        fields = "__all__"
