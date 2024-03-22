@@ -19,7 +19,6 @@ urlpatterns = [
     path("topics/create/", views.TopicCreateView.as_view(), name="topic-create"),
     path("topics/<int:pk>/update/", views.TopicUpdateView.as_view(), name="topic-update"),
     path("topics/<int:pk>/delete/", views.TopicDeleteView.as_view(), name="topic-delete"),
-    path("topics/<int:pk>/", views.TopicDetailView.as_view(), name="topic-detail"),
 ]
 app_name = 'newspaper'
 

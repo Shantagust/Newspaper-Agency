@@ -23,6 +23,10 @@ class Topic(models.Model):
     def __str__(self):
         return self.name
 
+    @staticmethod
+    def get_absolute_url():
+        return reverse("newspaper:topic-list")
+
 
 class Newspaper(models.Model):
     title = models.CharField(max_length=255)
