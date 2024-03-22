@@ -5,6 +5,6 @@
     <form action="" method="post">
         {% csrf_token %}
         <input type="submit" value="DELETE" class="btn btn-danger">
-        <a href="{% url 'newspaper:redactor-detail' redactor.id %}" class="btn btn-success">CANCEL</a>
+        <a href="{% url 'newspaper:redactor-list' %}" class="btn btn-success">CANCEL</a>
     </form>
 {% endblock %}

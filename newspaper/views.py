@@ -66,6 +66,20 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
     model = get_user_model()
     paginate_by = 2
 
+    def get_context_data(self, **kwargs):
+        context = super(RedactorListView, self).get_context_data(**kwargs)
+        context["search_form"] = SearchForm(self.request.GET)
+        return context
+
+    def get_queryset(self):
+        queryset = Redactor.objects.all()
+        search = SearchForm(self.request.GET)
+        if search.is_valid():
+            return queryset.filter(
+                username__icontains=search.cleaned_data["param"]
+            )
+        return queryset
+
 
 class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
     model = get_user_model()
