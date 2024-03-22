@@ -11,7 +11,7 @@ class NewspaperAdmin(admin.ModelAdmin):
 
 
 @admin.register(Topic)
-class NewspaperAdmin(admin.ModelAdmin):
+class TopicAdmin(admin.ModelAdmin):
     list_display = ('name',)
     list_filter = ('name',)
 
