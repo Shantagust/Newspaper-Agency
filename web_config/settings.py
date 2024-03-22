@@ -51,6 +51,8 @@ TEMPLATES = [
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+LOGIN_REDIRECT_URL = "/"
+
 WSGI_APPLICATION = "web_config.wsgi.application"
 
 DATABASES = {

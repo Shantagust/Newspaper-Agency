@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from newspaper import forms
+from newspaper.forms import SearchForm
 from newspaper.models import Newspaper, Topic, Redactor
 
 
@@ -21,6 +22,20 @@ class NewsListView(generic.ListView):
     model = Newspaper
     template_name = 'newspaper/news_list.html'
     paginate_by = 4
+
+    def get_context_data(self, **kwargs):
+        context = super(NewsListView, self).get_context_data(**kwargs)
+        context["search_form"] = SearchForm(self.request.GET)
+        return context
+
+    def get_queryset(self):
+        queryset = Newspaper.objects.select_related("newspapers")
+        search = SearchForm(self.request.GET)
+        if search.is_valid():
+            return queryset.filter(
+                model__icontains=search.cleaned_data["param"]
+            )
+        return queryset
 
 
 class NewsDetailView(generic.DetailView):

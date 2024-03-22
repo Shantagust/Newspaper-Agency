@@ -29,7 +29,7 @@
                                     <a href="{{ news.publisher.get_absolute_url }}">{{ news.publisher.username }}</a>
                                 </span>
                             </div>
-                            <p>{{ news.content }}</p>
+                            <p>{{ news.content|truncatewords:15 }}</p>
                         </div>
                     </div>
                 </div>

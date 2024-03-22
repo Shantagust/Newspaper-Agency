@@ -35,3 +35,14 @@ class TopicForm(forms.ModelForm):
     class Meta:
         model = Topic
         fields = "__all__"
+
+
+class SearchForm(forms.Form):
+    param = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={
+            "placeholder": "Search...",
+        })
+    )
