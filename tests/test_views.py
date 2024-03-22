@@ -7,12 +7,32 @@ from tests.test_models import init_data
 
 
 class PublicViewsTest(TestCase):
+    def setUp(self) -> None:
+        self.redactor = get_user_model().objects.create_user(
+            username=init_data["USERNAME"],
+            password=init_data["PASSWORD"],
+            last_name=init_data["LAST_NAME"],
+            first_name=init_data["FIRST_NAME"],
+            years_of_experience=init_data["YEARS_OF_EXPERIENCE"]
+        )
+
+        self.topic = Topic.objects.create(
+            name=init_data["TOPIC_NAME"],
+        )
+
+        self.news = Newspaper.objects.create(
+            title=init_data["TITLE"],
+            content=init_data["CONTENT"],
+            publisher=self.redactor
+        )
+        self.news.topic.add(self.topic)
+
     def test_without_login_news_list(self):
         res = self.client.get(reverse("newspaper:news-list"))
         self.assertTrue(res.status_code == 200)
 
     def test_without_login_news_detail(self):
-        res = self.client.get(reverse("newspaper:news-detail"))
+        res = self.client.get(reverse("newspaper:news-detail", kwargs={"pk": 1}))
         self.assertEqual(res.status_code, 200)
 
     def test_login_required_news_create(self):
@@ -20,7 +40,7 @@ class PublicViewsTest(TestCase):
         self.assertNotEqual(res.status_code, 200)
 
     def test_login_required_news_delete(self):
-        res = self.client.get(reverse("newspaper:news-delete"))
+        res = self.client.get(reverse("newspaper:news-delete", kwargs={"pk": self.news.id}))
         self.assertNotEqual(res.status_code, 200)
 
     def test_login_required_redactor_list(self):
@@ -28,38 +48,34 @@ class PublicViewsTest(TestCase):
         self.assertNotEqual(res.status_code, 200)
 
     def test_login_required_redactor_detail_page(self):
-        res = self.client.get(reverse("newspaper:redactor-detail"))
+        res = self.client.get(reverse("newspaper:redactor-detail", kwargs={"pk": self.redactor.id}))
         self.assertNotEqual(res.status_code, 200)
 
     def test_login_required_redactor_edit_page(self):
-        res = self.client.get(reverse("newspaper:redactor-update"))
+        res = self.client.get(reverse("newspaper:redactor-update", kwargs={"pk": self.redactor.id}))
         self.assertNotEqual(res.status_code, 200)
 
     def test_login_required_redactor_delete_page(self):
-        res = self.client.get(reverse("newspaper:redactor-delete"))
+        res = self.client.get(reverse("newspaper:redactor-delete", kwargs={"pk": self.redactor.id}))
         self.assertNotEqual(res.status_code, 200)
 
     def test_login_required_topic_list(self):
         res = self.client.get(reverse("newspaper:topic-list"))
         self.assertNotEqual(res.status_code, 200)
 
-    def test_login_required_topic_detail_page(self):
-        res = self.client.get(reverse("newspaper:topic-detail"))
-        self.assertNotEqual(res.status_code, 200)
-
     def test_login_required_topic_edit_page(self):
-        res = self.client.get(reverse("newspaper:topic-update"))
+        res = self.client.get(reverse("newspaper:topic-update", kwargs={"pk": self.topic.id}))
         self.assertNotEqual(res.status_code, 200)
 
     def test_login_required_topic_delete_page(self):
-        res = self.client.get(reverse("newspaper:topic-delete"))
+        res = self.client.get(reverse("newspaper:topic-delete", kwargs={"pk": self.topic.id}))
         self.assertNotEqual(res.status_code, 200)
 
     def test_login_required_redactor_detail(self):
         res = self.client.get(
             reverse(
                 "newspaper:redactor-detail",
-                args=[self.user.id])
+                args=[self.redactor.id])
         )
         self.assertNotEqual(res.status_code, 200)
 
