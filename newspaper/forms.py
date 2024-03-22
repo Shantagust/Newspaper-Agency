@@ -29,7 +29,7 @@ class RedactorCreateForm(UserCreationForm):
 class RedactorForm(forms.ModelForm):
     class Meta:
         model = get_user_model()
-        fields = ["first_name", "last_name"]
+        fields = ["first_name", "last_name", "years_of_experience"]
 
 
 class TopicForm(forms.ModelForm):
