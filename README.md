@@ -4,7 +4,7 @@ Django project for managing news and redactors in Newspaper
 
 ## Check it out:
 
-[Newspaper Agency Developed for Render](https://localhost/)
+[Newspaper Agency Developed for Render](https://newspaper-agency-zlht.onrender.com)
 
 ## Installation
 
@@ -25,6 +25,11 @@ python3 manage.py runserver localhost #start django project
 * Managing news and news topics
 * Powerful admin panel for advancing managing
 
+### Test user:
+```shell
+login: admin
+password: SupAdmn331
+```
 
 # Demo
 ![website view](demo.png)
