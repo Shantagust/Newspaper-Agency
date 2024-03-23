@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    {% block title %}
+        <title>Newspaper online</title>
+    {% endblock %}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-name" content="newsbit"/>
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/slick-carousel/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/slick-carousel/slick-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+{% include 'includes/navigation.html' %}
+
+<section class="block-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="news-style-one">
+                    {% block content %}{% endblock %}
+                    {% block pagination %}
+                        {% include "includes/pagination.html" %}
+                    {% endblock %}
+                </div>
+            </div>
+            {% include 'includes/left_sidebar.html' %}
+        </div>
+    </div>
+</section>
+<div class="py-40"></div>
+{% include "includes/footer.html" %}
+
+</body>
+</html>

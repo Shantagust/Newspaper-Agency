@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h3 class="news-title">
+        <span>Last news</span>
+        {% if user.is_authenticated %}
+            <a href="{% url 'newspaper:news-create' %}" class="btn btn-success btn-sm float-right">
+                add news
+            </a>
+        {% endif %}
+    </h3>
+
+    {% include 'includes/search_field.html' %}
+    {% if newspaper_list %}
+        {% for news in newspaper_list %}
+            <div class="news-style-one-slide">
+                <div class="item">
+                    <div class="post-block-wrapper clearfix mb-5">
+                        <div class="post-content">
+                            <h2 class="post-title mt-3">
+                                <a href="{{ news.get_absolute_url }}">{{ news.title }}</a>
+                            </h2>
+                            <div class="post-meta mb-2">
+                                <span class="posted-time">
+                                    <i class="fa fa-clock-o mr-2"></i>
+                                    {{ news.published_date }}
+                                </span>
+                                <span class="post-author"> by
+                                    <a href="{{ news.publisher.get_absolute_url }}">{{ news.publisher.username }}</a>
+                                </span>
+                            </div>
+                            <p>{{ news.content|truncatewords:15 }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Posts not found !</p>
+    {% endif %}
+{% endblock %}

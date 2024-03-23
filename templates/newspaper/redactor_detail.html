@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}<title> profile {{ redactor.username }} </title>{% endblock %}
+
+
+{% block content %}
+    Username: <strong>{{ redactor.username }}</strong><br>
+    Full name: <strong>{{ redactor.first_name }} {{ redactor.last_name }}</strong><br>
+    Experience: <strong>{{ redactor.years_of_experience }} year{{ redactor.years_of_experience|pluralize }}</strong><br>
+    Last login: <strong>{{ redactor.last_login }}</strong><br>
+    News count: <strong>{{ redactor.newspapers.count }}</strong>
+{% endblock %}
