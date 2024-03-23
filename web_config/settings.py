@@ -11,7 +11,7 @@ load_dotenv()
 SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 
 DEBUG = os.getenv("DJANGO_DEBUG", "") != "False"
-ALLOWED_HOSTS = ["localhost", "https://newspaper-agency-zlht.onrender.com"]
+ALLOWED_HOSTS = ["localhost", "newspaper-agency-zlht.onrender.com"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
